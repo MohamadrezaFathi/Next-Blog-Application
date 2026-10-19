@@ -9,10 +9,21 @@ const nextConfig = {
         pathname: "/uploads/**",
       },
     ],
+
+    dangerouslyAllowLocalIP: true,
   },
-  logging: {
-    fetches: {
-      fullUrl: true,
+
+  cacheComponents: true,
+  partialPrefetching: true,
+  devIndicators: false,
+  reactCompiler: true,
+
+  turbopack: {
+    rules: {
+      "*.css": {
+        loaders: ["@tailwindcss/turbopack"],
+        as: "*.css",
+      },
     },
   },
 };

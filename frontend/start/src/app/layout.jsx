@@ -1,29 +1,25 @@
-import vazirFont from "@/constants/localFont";
-import AuthProvider from "@/context/AuthContext";
-import { DarkModeProvier } from "@/context/DarkModeContext";
-import ReactQueryProvider from "@/providers/ReactQueryProvider";
+
 import "@/styles/globals.css";
-import { Toaster } from "react-hot-toast";
+import vazirFont from "@/constants/localFont";
+import Header from "@/components/Header";
 
 export const metadata = {
-  // title: "بلاگ اپ",
-  title: {
-    template: "%s | بلااگ اپ",
-    default: "بلاگ اپ", // a default is required when creating a template
+  title:{
+    template:"%s | وبلاگ یار",
+    default:"وبلاگ یار"
   },
-  description: "وب اپلیکیشن مدیریت بلاگ ها و نظرات کاربران",
+  description:
+    "یک فضای ساده و مدرن برای مدیریت بلاگ‌ها، انتشار محتوا و تعامل با خوانندگان.",
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="fa" dir="rtl" className="light-mode">
-      <body className={`${vazirFont.variable} font-sans min-h-screen`}>
-        <Toaster />
-        <DarkModeProvier>
-          <ReactQueryProvider>
-            <AuthProvider>{children}</AuthProvider>
-          </ReactQueryProvider>
-        </DarkModeProvier>
+    <html lang="fa" dir="rtl">
+      <body
+        className={`${vazirFont.className} min-h-screen bg-slate-50 text-slate-800 antialiased`}
+      >
+        <Header />
+        {children}
       </body>
     </html>
   );

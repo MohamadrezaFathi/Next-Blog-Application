@@ -1,5 +1,4 @@
 import LocalFont from "next/font/local";
-
 const vazirFont = LocalFont({
   src: [
     {
@@ -29,7 +28,7 @@ const vazirFont = LocalFont({
     },
   ],
   variable: "--font-vazir",
-  style: "noramal",
+  style: "normal",
   display: "block",
 });
 
