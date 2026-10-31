@@ -9,6 +9,7 @@ import {
   CalendarDaysIcon,
 } from "@heroicons/react/24/outline";
 import getPostBySlug from "@/services/postServices";
+import BlogComments from "@/components/blogs/comments/BlogComments";
 
 
 export async function generateMetadata({ params }) {
@@ -181,6 +182,8 @@ async function SinglePostPage({ params }) {
         </div>
 
         {/* در آینده: کامنت‌ها و پست‌های مرتبط */}
+
+        <BlogComments post={post} />
 
       </article>
     </main>

@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import CategoryList from "../_components/CategoryList";
 import Loading from "../loading";
+import Search from "@/ui/Search";
 
 export const metadata = {
   title: "بلاگ‌ها",
@@ -33,6 +34,8 @@ export default function BlogsLayout({ children }) {
           </aside>
 
           <section className="min-w-0 lg:col-span-9">
+                      <Search/>
+
             {children}
           </section>
         </div>

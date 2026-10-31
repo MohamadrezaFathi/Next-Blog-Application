@@ -2,6 +2,9 @@
 import "@/styles/globals.css";
 import vazirFont from "@/constants/localFont";
 import Header from "@/components/Header";
+import { Toaster } from "react-hot-toast";
+import AuthProvider from "@/context/AuthContext";
+
 
 export const metadata = {
   title:{
@@ -18,8 +21,22 @@ export default function RootLayout({ children }) {
       <body
         className={`${vazirFont.className} min-h-screen bg-slate-50 text-slate-800 antialiased`}
       >
-        <Header />
+
+       <Toaster
+    position="top-center"
+    reverseOrder={false}
+    toastOptions={{
+      duration: 4000,
+      style: {
+        fontFamily: "Vazirmatn, sans-serif",
+        direction: "rtl",
+      },
+    }}
+  />        
+  <AuthProvider>
         {children}
+      </AuthProvider>    
+ 
       </body>
     </html>
   );

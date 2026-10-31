@@ -5,6 +5,7 @@ import { useState } from "react";
 import Link from "next/link";
 import NavLink from "./NavLink";
 import { Suspense } from "react";
+import { useAuth } from "@/context/AuthContext";
 
 const navLinks = [
   { id: 1, children: "خانه", path: "/" },
@@ -15,7 +16,7 @@ function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   // فعلاً آزمایشی است؛ بعداً از AuthContext استفاده می‌کنیم.
-  const user = false;
+  const {user, isLoading} = useAuth();
 
   const closeMenu = () => setMenuOpen(false);
 
@@ -69,24 +70,25 @@ function Header() {
 </nav>
 
         {/* Desktop actions */}
-        <div className="hidden items-center gap-3 md:flex">
-          {user ? (
-            <Link
-              href="/profile"
-              className="rounded-xl bg-indigo-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-indigo-700"
-            >
-              پنل کاربری
-            </Link>
-          ) : (
-            <Link
-              href="/signin"
-              className="rounded-xl border border-slate-200 bg-white px-5 py-2.5 text-sm font-semibold text-slate-700 transition hover:border-indigo-200 hover:bg-indigo-50 hover:text-indigo-700"
-            >
-              ورود به حساب
-            </Link>
-          )}
-        </div>
-
+       <div className="hidden items-center gap-3 md:flex">
+  {isLoading ? (
+    <div className="h-10 w-28 animate-pulse rounded-xl bg-slate-200" />
+  ) : user ? (
+    <Link
+      href="/profile"
+      className="rounded-xl bg-indigo-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-indigo-700"
+    >
+      پنل کاربری
+    </Link>
+  ) : (
+    <Link
+      href="/signin"
+      className="rounded-xl border border-slate-200 bg-white px-5 py-2.5 text-sm font-semibold text-slate-700 transition hover:border-indigo-200 hover:bg-indigo-50 hover:text-indigo-700"
+    >
+      ورود به حساب
+    </Link>
+  )}
+</div>
         {/* Mobile menu button */}
         <button
           type="button"
