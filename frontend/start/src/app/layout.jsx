@@ -1,15 +1,14 @@
-
 import "@/styles/globals.css";
 import vazirFont from "@/constants/localFont";
 import Header from "@/components/Header";
 import { Toaster } from "react-hot-toast";
 import AuthProvider from "@/context/AuthContext";
-
+import ReactQueryProvider from "@/providers/ReactQueryProvider";
 
 export const metadata = {
-  title:{
-    template:"%s | وبلاگ یار",
-    default:"وبلاگ یار"
+  title: {
+    template: "%s | وبلاگ یار",
+    default: "وبلاگ یار",
   },
   description:
     "یک فضای ساده و مدرن برای مدیریت بلاگ‌ها، انتشار محتوا و تعامل با خوانندگان.",
@@ -21,22 +20,20 @@ export default function RootLayout({ children }) {
       <body
         className={`${vazirFont.className} min-h-screen bg-slate-50 text-slate-800 antialiased`}
       >
-
-       <Toaster
-    position="top-center"
-    reverseOrder={false}
-    toastOptions={{
-      duration: 4000,
-      style: {
-        fontFamily: "Vazirmatn, sans-serif",
-        direction: "rtl",
-      },
-    }}
-  />        
-  <AuthProvider>
-        {children}
-      </AuthProvider>    
- 
+        <Toaster
+          position="top-center"
+          reverseOrder={false}
+          toastOptions={{
+            duration: 4000,
+            style: {
+              fontFamily: "Vazirmatn, sans-serif",
+              direction: "rtl",
+            },
+          }}
+        />
+        <ReactQueryProvider>
+          <AuthProvider>{children}</AuthProvider>
+        </ReactQueryProvider>
       </body>
     </html>
   );

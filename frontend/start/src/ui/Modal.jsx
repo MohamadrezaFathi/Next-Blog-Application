@@ -9,29 +9,42 @@ function Modal({ open, onClose, title, children, description = "" }) {
     open &&
     createPortal(
       <div
-        className="backdrop-blur-sm fixed top-0 left-0
-           w-full h-screen bg-secondary-800 bg-opacity-30 z-50"
+        className="fixed inset-0 z-50 flex items-center justify-center
+        bg-primary-900/30 backdrop-blur-sm p-4
+        transition-all duration-300"
       >
         <div
           ref={ref}
-          className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
-        rounded-lg bg-secondary-0 p-4 shadow-lg transition-all duration-500 ease-out
-        w-[calc(100vw-2rem)] md:max-w-lg max-h-[calc(100vh-2rem)] overflow-y-auto"
+          className="w-full md:max-w-lg max-h-[calc(100vh-2rem)]
+          overflow-y-auto rounded-2xl bg-white p-5 shadow-2xl
+          ring-1 ring-primary-900/10
+          animate-in fade-in zoom-in-95 duration-200"
         >
-          <div
-            className="flex items-center justify-between border-b 
-          border-b-secondary-300 pb-2 mb-6"
-          >
+          {/* Header */}
+          <div className="flex items-start justify-between border-b border-secondary-100 pb-4 mb-5">
             <div>
-              <p className="text-secondary-700 font-bold text-base">{title}</p>
-              <p className="text-secondary-400 text-sm lg:text-base">
-                {description}
+              <p className="text-secondary-800 font-bold text-lg">
+                {title}
               </p>
+
+              {description && (
+                <p className="mt-1 text-secondary-400 text-sm">
+                  {description}
+                </p>
+              )}
             </div>
-            <button onClick={onClose}>
-              <XMarkIcon className="w-5 h-5 text-secondary-500" />
+
+            <button
+              type="button"
+              onClick={onClose}
+              className="flex items-center justify-center rounded-xl
+              p-2 text-secondary-500 transition-colors
+              hover:bg-primary-900/10 hover:text-primary-900"
+            >
+              <XMarkIcon className="h-5 w-5" />
             </button>
           </div>
+
           {children}
         </div>
       </div>,
@@ -39,4 +52,5 @@ function Modal({ open, onClose, title, children, description = "" }) {
     )
   );
 }
+
 export default Modal;

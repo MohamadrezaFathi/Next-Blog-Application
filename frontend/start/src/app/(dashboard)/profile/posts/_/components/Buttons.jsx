@@ -8,6 +8,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useFormState } from "react-dom";
 import toast from "react-hot-toast";
+import deletePost from "../actions/deletePost";
 
 export function CreatePost() {
   return (
